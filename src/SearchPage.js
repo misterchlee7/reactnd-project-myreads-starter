@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 class SearchPage extends Component {
   render() {
-    const { closeSearchPage } = this.props;
+    const { toggleSearchPage } = this.props;
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <button className="close-search" onClick={() => { closeSearchPage() }}>Close</button>
+          <button className="close-search" onClick={() => { toggleSearchPage() }}>Close</button>
           <div className="search-books-input-wrapper">
             {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
