@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class BooksListPage extends Component {
   render() {
-    const { toggleSearchPage } = this.props;
-
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -161,7 +160,9 @@ class BooksListPage extends Component {
           </div>
         </div>
         <div className="open-search">
-          <button onClick={() => toggleSearchPage()}>Add a book</button>
+          <Link to='/search'>
+            <button>Add a Book</button>
+          </Link>
         </div>
       </div>
     );
