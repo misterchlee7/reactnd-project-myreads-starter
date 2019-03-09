@@ -8,12 +8,7 @@ import BooksListPage from './BooksListPage';
 
 class BooksApp extends React.Component {
   state = {
-    books: [],
-    shelves: {
-      'Currently Reading': [],
-      'Want to Read': [],
-      'Read': []
-    }
+    books: []
   };
 
   componentDidMount() {
@@ -23,20 +18,20 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    const { shelves } = this.state;
+    const { books, shelves } = this.state;
 
     return (
       <div className="app">
         <Route 
           exact path='/'
           render={() => (
-            <BooksListPage
-              shelves={shelves} />
+            <BooksListPage />
           )} />
         <Route 
         path='/search'
         render={() => (
-          <SearchPage /> 
+          <SearchPage
+            books={books} /> 
         )} />  
       </div>
     )
