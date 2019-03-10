@@ -17,7 +17,7 @@ class SearchPage extends Component {
       BooksAPI.search(this.state.query)
         .then(books => {
           if (books.length) {
-            this.setState({ searchResults: books })
+            this.setState({ searchResults: books }, () => console.log(this.state.searchResults))
           } else {
             this.setState({ searchResults: []})
           }
@@ -48,6 +48,8 @@ class SearchPage extends Component {
               value={this.state.query}
               placeholder="Search by title or author"
               onChange={this.handleInput} />
+            <button onClick={this.getBook}>test</button>
+            <button onClick={this.changeShelf}>test update</button>
           </div>
         </div>
         <SearchResults searchResults={this.state.searchResults} />
