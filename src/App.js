@@ -11,12 +11,29 @@ class BooksApp extends React.Component {
     books: []
   };
 
-  async componentDidMount() {
-    const books = await BooksAPI.getAll();
-    this.setState({ books }, () => console.log('APP: book initial state set', this.state.books))
+  componentDidMount() {
+    console.log('APP: didMount')
+    this.getAllBooks();
+  }
+  
+  getAllBooks = () => {
+    BooksAPI.
+      getAll()
+      .then((books) => {
+        this.setState({ books }, () => {
+          console.log('bookshelf state',this.state);
+        })
+    })
   }
 
+  updateShelf = async (bookId, shelf) => {
+    const book = await BooksAPI.get(bookId);
+    await BooksAPI.update(book, shelf);
+    this.getAllBooks();
+  };
+
   render() {
+    console.log('APP: render')
     const { books } = this.state;
 
     return (
@@ -25,12 +42,15 @@ class BooksApp extends React.Component {
           exact path='/'
           render={() => (
             <BooksListPage
-              booksList={books} />
+              booksList={books}
+              updateShelf={this.updateShelf} />
           )} />
         <Route 
         path='/search'
         render={() => (
-          <SearchPage /> 
+          <SearchPage
+            booksList={books}
+            updateShelf={this.updateShelf} /> 
         )} />  
       </div>
     )

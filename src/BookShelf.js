@@ -4,15 +4,18 @@ import Book from './Book';
 
 class BookShelf extends Component {
   render() {
-    const { shelfTitle, booksList } = this.props;
-    const books = booksList.map((book, i) => {
+    const { shelfTitle, booksList, updateShelf } = this.props;
+    const books = booksList.map(book => {
       const bookImg = book.imageLinks ? book.imageLinks.thumbnail : 'https://rcmllp.com/wp-content/uploads/2017/11/no-photo.jpg';
       return (
         <Book
-          key={i}
+          key={book.id}
+          id={book.id}
           title={book.title}
           author={book.author}
-          bookImage={bookImg} />
+          bookImage={bookImg}
+          currentShelf={book.shelf}
+          updateShelf={updateShelf} />
     )})
 
     return (

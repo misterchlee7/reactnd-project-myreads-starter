@@ -44,15 +44,17 @@ class SearchPage extends Component {
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
             <input 
+              autoFocus
               type="text" 
               value={this.state.query}
               placeholder="Search by title or author"
               onChange={this.handleInput} />
-            <button onClick={this.getBook}>test</button>
-            <button onClick={this.changeShelf}>test update</button>
           </div>
         </div>
-        <SearchResults searchResults={this.state.searchResults} />
+        <SearchResults 
+          searchResults={this.state.searchResults}
+          booksList={this.props.booksList}
+          updateShelf={this.props.updateShelf} />
       </div>
     );
   }
