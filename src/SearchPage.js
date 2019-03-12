@@ -12,12 +12,11 @@ class SearchPage extends Component {
 
   handleInput = async (e) => {
     await this.setState({ query: e.target.value });
-
     if (this.state.query.length) {
       BooksAPI.search(this.state.query)
         .then(books => {
           if (books.length) {
-            this.setState({ searchResults: books }, () => console.log(this.state.searchResults))
+            this.setState({ searchResults: books });
           } else {
             this.setState({ searchResults: []})
           }
@@ -28,6 +27,9 @@ class SearchPage extends Component {
   };
 
   render() {
+    const { query, searchResults } = this.state;
+    const { booksList, updateShelf } = this.props;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -46,15 +48,15 @@ class SearchPage extends Component {
             <input 
               autoFocus
               type="text" 
-              value={this.state.query}
+              value={query}
               placeholder="Search by title or author"
               onChange={this.handleInput} />
           </div>
         </div>
         <SearchResults 
-          searchResults={this.state.searchResults}
-          booksList={this.props.booksList}
-          updateShelf={this.props.updateShelf} />
+          searchResults={searchResults}
+          booksList={booksList}
+          updateShelf={updateShelf} />
       </div>
     );
   }

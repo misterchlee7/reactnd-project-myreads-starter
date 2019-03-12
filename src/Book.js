@@ -15,6 +15,7 @@ class Book extends Component {
     const authors = Array.isArray(author) && author.length > 1 
       ? author.map((a, i) => <div key={i} className="book-authors">{a}</div>)
       : <div className="book-authors">{author}</div>
+      
     return (
       <li>
         <div className="book">
