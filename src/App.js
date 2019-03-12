@@ -12,7 +12,6 @@ class BooksApp extends React.Component {
   };
 
   componentDidMount() {
-    console.log('APP: didMount')
     this.getAllBooks();
   }
   
@@ -33,7 +32,6 @@ class BooksApp extends React.Component {
   };
 
   render() {
-    console.log('APP: render')
     const { books } = this.state;
 
     return (

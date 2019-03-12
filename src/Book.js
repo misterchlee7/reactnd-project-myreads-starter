@@ -12,7 +12,9 @@ class Book extends Component {
 
   render() {
     const { title, author, bookImage } = this.props;
-
+    const authors = Array.isArray(author) && author.length > 1 
+      ? author.map((a, i) => <div key={i} className="book-authors">{a}</div>)
+      : <div className="book-authors">{author}</div>
     return (
       <li>
         <div className="book">
@@ -31,7 +33,7 @@ class Book extends Component {
             </div>
           </div>
           <div className="book-title">{title}</div>
-          <div className="book-authors">{author}</div>
+          {authors}
         </div>
       </li>
     );
